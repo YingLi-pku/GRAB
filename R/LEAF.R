@@ -872,7 +872,7 @@ LEAF.Cluster <- function(
 ) {
 
   # Detect reference populations
-  refGenoInfo <- data.table::fread(RefAfFile)
+  refGenoInfo <- data.table::fread(RefAfFile,colClasses = c(CHROM = "character"))
   colnames(refGenoInfo) <- toupper(gsub("\\.", "_", colnames(refGenoInfo)))
   afCols <- grep("_AF$", colnames(refGenoInfo), value = TRUE)
   pops <- sub("_AF$", "", afCols)
